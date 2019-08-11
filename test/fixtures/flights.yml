@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  airline: MyString
+  flight_number: 
+  depart_airport: MyString
+  depart_at: 2019-08-10 21:31:58
+  arrive_airport: MyString
+  arrive_at: 2019-08-10 21:31:58
+  amount_in_cents: 1
+  amount_currency: MyString
+  notes: MyString
+  trip: one
+  deleted_at: 2019-08-10 21:31:58
+
+two:
+  airline: MyString
+  flight_number: 
+  depart_airport: MyString
+  depart_at: 2019-08-10 21:31:58
+  arrive_airport: MyString
+  arrive_at: 2019-08-10 21:31:58
+  amount_in_cents: 1
+  amount_currency: MyString
+  notes: MyString
+  trip: two
+  deleted_at: 2019-08-10 21:31:58

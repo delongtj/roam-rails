@@ -1,0 +1,25 @@
+development: &development
+  adapter: postgresql
+  encoding: utf8
+  reconnect: false
+  database: roam_development
+  pool: 25
+  host: localhost
+
+test: &test
+  adapter: postgresql
+  encoding: utf8
+  reconnect: false
+  database: roam_test
+  pool: 25
+  host: localhost
+
+production:
+  adapter: postgresql
+  encoding: utf8
+  pool: 25
+  database: <%= ENV['DB_NAME'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  host: <%= ENV['DB_HOST'] %>
+  port: <%= ENV['DB_PORT'] %>

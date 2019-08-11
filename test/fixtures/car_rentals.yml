@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company: MyString
+  pickup_address: MyString
+  pickup_at: 2019-08-10 21:35:30
+  dropoff_address: MyString
+  dropoff_at: 2019-08-10 21:35:30
+  amount_in_cents: 1
+  amount_currency: MyString
+  notes: MyString
+  trip: one
+  deleted_at: 2019-08-10 21:35:30
+
+two:
+  company: MyString
+  pickup_address: MyString
+  pickup_at: 2019-08-10 21:35:30
+  dropoff_address: MyString
+  dropoff_at: 2019-08-10 21:35:30
+  amount_in_cents: 1
+  amount_currency: MyString
+  notes: MyString
+  trip: two
+  deleted_at: 2019-08-10 21:35:30
