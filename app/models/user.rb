@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  acts_as_paranoid
+
   has_secure_password
 
   validates :email, :password_digest, presence: true

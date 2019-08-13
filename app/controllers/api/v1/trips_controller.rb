@@ -1,6 +1,6 @@
 module Api
   module V1
-    class TripsController < ApplicationController
+    class TripsController < Api::V1::ApiController
       before_action :set_trip, only: [:show, :update, :destroy]
 
       # GET /trips

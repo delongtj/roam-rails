@@ -11,7 +11,12 @@ gem 'pg'
 gem 'bcrypt'
 
 gem 'rack-cors'
-gem 'jwt_sessions'
+gem 'jwt'
+
+gem 'decent_exposure'
+gem 'acts_as_paranoid'
+
+gem 'simple_command'
 
 group :development, :test do
   gem 'byebug'

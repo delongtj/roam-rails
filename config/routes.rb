@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
-  resources :point_of_interests
-  resources :accommodations
-  resources :car_rentals
-  resources :flights
+  post 'authenticate', to: 'authentication#authenticate'
+
   namespace :api do
     namespace :v1 do
+      resources :accommodations
+      resources :car_rentals
+      resources :flights
+      resources :point_of_interests
       resources :trips
     end
   end
