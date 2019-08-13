@@ -8,7 +8,7 @@ class CreateCarRentals < ActiveRecord::Migration[5.2]
       t.string :drop_off_address
       t.timestamp :drop_off_at
       t.integer :amount_in_cents
-      t.string :amount_currency, limit: 3
+      t.string :amount_currency, limit: 3, default: 'USD'
       t.string :notes
       t.references :trip, foreign_key: true, null: false
 

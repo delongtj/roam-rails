@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_024244) do
     t.datetime "check_in_at"
     t.datetime "check_out_at"
     t.integer "amount_in_cents"
-    t.string "amount_currency", limit: 3
+    t.string "amount_currency", limit: 3, default: "USD"
     t.string "notes"
     t.bigint "trip_id", null: false
     t.datetime "created_at", null: false
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_024244) do
     t.string "drop_off_address"
     t.datetime "drop_off_at"
     t.integer "amount_in_cents"
-    t.string "amount_currency", limit: 3
+    t.string "amount_currency", limit: 3, default: "USD"
     t.string "notes"
     t.bigint "trip_id", null: false
     t.datetime "created_at", null: false
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_024244) do
     t.string "arrive_airport", limit: 3
     t.datetime "arrive_at"
     t.integer "amount_in_cents"
-    t.string "amount_currency", limit: 3
+    t.string "amount_currency", limit: 3, default: "USD"
     t.string "notes"
     t.bigint "trip_id", null: false
     t.datetime "created_at", null: false
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_024244) do
     t.date "visit_date", null: false
     t.string "address"
     t.integer "amount_in_cents"
-    t.string "amount_currency", limit: 3
+    t.string "amount_currency", limit: 3, default: "USD"
     t.string "notes"
     t.integer "order", limit: 2, null: false
     t.bigint "trip_id", null: false
@@ -82,8 +82,9 @@ ActiveRecord::Schema.define(version: 2019_08_11_024244) do
 
   create_table "trips", force: :cascade do |t|
     t.string "name", null: false
+    t.text "description"
     t.integer "budget_in_cents"
-    t.string "budget_currency", limit: 3
+    t.string "budget_currency", limit: 3, default: "USD"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"

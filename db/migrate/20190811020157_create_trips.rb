@@ -4,7 +4,7 @@ class CreateTrips < ActiveRecord::Migration[5.2]
       t.string :name, null: false
       t.text :description
       t.integer :budget_in_cents
-      t.string :budget_currency, limit: 3
+      t.string :budget_currency, limit: 3, default: 'USD'
 
       t.timestamps
 
