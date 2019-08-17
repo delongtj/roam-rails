@@ -1,14 +1,17 @@
 Rails.application.routes.draw do
 
-  post 'authenticate', to: 'authentication#authenticate'
+  post 'sign-in', to: 'authentication#sign_in'
+  post 'sign-up', to: 'authentication#sign_up'
+  post 'sign-out', to: 'authentication#sign_out'
 
   namespace :api do
     namespace :v1 do
-      resources :accommodations
-      resources :car_rentals
-      resources :flights
-      resources :point_of_interests
-      resources :trips
+      resources :trips do
+        resources :accommodations
+        resources :car_rentals
+        resources :flights
+        resources :points_of_interest
+      end
     end
   end
 
