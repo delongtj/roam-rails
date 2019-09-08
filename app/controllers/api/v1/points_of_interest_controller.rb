@@ -1,21 +1,21 @@
 module Api
   module V1
-    class PointOfInterestsController < Api::V1::ApiController
+    class PointsOfInterestController < Api::V1::ApiController
       before_action :set_point_of_interest, only: [:show, :update, :destroy]
 
-      # GET /point_of_interests
+      # GET /points_of_interest
       def index
-        @point_of_interests = PointOfInterest.all
+        @points_of_interest = PointOfInterest.all
 
-        render json: @point_of_interests
+        render json: @points_of_interest
       end
 
-      # GET /point_of_interests/1
+      # GET /points_of_interest/1
       def show
         render json: @point_of_interest
       end
 
-      # POST /point_of_interests
+      # POST /points_of_interest
       def create
         @point_of_interest = PointOfInterest.new(point_of_interest_params)
 
@@ -26,7 +26,7 @@ module Api
         end
       end
 
-      # PATCH/PUT /point_of_interests/1
+      # PATCH/PUT /points_of_interest/1
       def update
         if @point_of_interest.update(point_of_interest_params)
           render json: @point_of_interest
@@ -35,7 +35,7 @@ module Api
         end
       end
 
-      # DELETE /point_of_interests/1
+      # DELETE /points_of_interest/1
       def destroy
         @point_of_interest.destroy
       end

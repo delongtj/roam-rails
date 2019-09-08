@@ -1,33 +1,29 @@
 class AuthenticationController < ApplicationController
-  skip_before_action :authenticate_request, except: :sign_out
+  skip_before_action :authenticate_request
 
   def sign_in
-    command = AuthenticateUser.call(params[:email], params[:password])
+    result = UserService.sign_in(params[:email], params[:password])
 
-    if command.success?
-      render json: { auth_token: command.result }
+    if result[:token].present?
+      render json: result
     else
-      render json: { error: command.errors }, status: :unauthorized
+      render json: result, status: :unauthorized
     end
   end
 
   def sign_up
-    command = CreateUser.call(params[:email], params[:password], params[:password_confirmation])
+    result = UserService.create(params[:email], params[:password], params[:password_confirmation])
 
-    if command.success?
-      render json: { auth_token: command.result }
+    if result[:user].present?
+      render json: UserService.sign_in(params[:email], params[:password])
     else
-      render json: { error: command.errors }, status: :unauthorized
+      render json: result, status: :unauthorized
     end
   end
 
   def sign_out
-    command = SignOutUser.call(current_user)
+    result = UserService.sign_out(current_user)
 
-    if command.success?
-      render json: { auth_token: command.result }
-    else
-      render json: { error: command.errors }, status: :unauthorized
-    end
+    render json: result
   end
 end

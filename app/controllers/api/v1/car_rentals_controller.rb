@@ -48,7 +48,7 @@ module Api
 
         # Only allow a trusted parameter "white list" through.
         def car_rental_params
-          params.require(:car_rental).permit(:company, :pickup_address, :pickup_at, :dropoff_address, :dropoff_at, :amount_in_cents, :amount_currency, :notes, :trip_id, :deleted_at)
+          params.require(:car_rental).permit(:company, :pick_up_address, :pick_up_at, :drop_off_address, :drop_off_at, :amount_in_cents, :amount_currency, :notes, :trip_id, :deleted_at)
         end
     end
   end

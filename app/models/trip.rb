@@ -1,5 +1,5 @@
 class Trip < ApplicationRecord
-  acts_as_paranoid
+  include ApiRespondable
 
   has_many :user_trips
   has_many :users, through: :user_trips

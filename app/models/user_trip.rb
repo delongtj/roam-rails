@@ -1,5 +1,5 @@
 class UserTrip < ApplicationRecord
-  acts_as_paranoid
+  include ApiRespondable
 
   belongs_to :user
   belongs_to :trip

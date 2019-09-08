@@ -9,6 +9,8 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.timestamps
 
       t.timestamp :deleted_at
+
+      t.index  :email, unique: true
     end
   end
 end

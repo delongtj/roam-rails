@@ -1,5 +1,5 @@
 class CarRental < ApplicationRecord
-  acts_as_paranoid
+  include ApiRespondable
 
   belongs_to :trip
 end

@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
   before_action :authenticate_request
 
-  expose(:current_user) { AuthorizeApiRequest.call(request.headers).result }
+  expose(:current_user) { UserService.authenticate(request.headers)[:user] }
 
   def authenticate_request
     render json: { error: 'Not Authorized' }, status: 401 unless current_user

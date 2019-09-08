@@ -1,5 +1,5 @@
-class Flight < ApplicationRecord
-  acts_as_paranoid
+class Flight < ApiModel
+  include ApiRespondable
 
   belongs_to :trip
 end

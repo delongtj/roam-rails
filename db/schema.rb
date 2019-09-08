@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_024244) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "accommodations", "trips"
