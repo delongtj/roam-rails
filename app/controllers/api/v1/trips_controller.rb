@@ -33,7 +33,11 @@ module Api
       end
 
       def destroy
-        trip.destroy
+        if trip.destroy
+          render json: trip
+        else
+          render json: trip.errors, status: :unprocessable_entity
+        end
       end
     end
   end
