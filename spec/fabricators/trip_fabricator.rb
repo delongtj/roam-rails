@@ -1,7 +1,7 @@
 Fabricator(:trip) do
   name { Faker::Lorem.sentence }
   description { Faker::Lorem.paragraph }
-  budget_in_cents 10000
+  budget_in_cents { rand_integer }
   budget_currency 'USD'
 
   after_create do |trip|

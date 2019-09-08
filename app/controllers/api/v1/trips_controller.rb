@@ -6,7 +6,7 @@ module Api
         params.require(:trip).permit(:name, :description)
       }
       expose(:trips) { current_user.trips }
-      expose(:trip)
+      expose(:trip, scope: -> { trips })
 
       def index
         render json: trips

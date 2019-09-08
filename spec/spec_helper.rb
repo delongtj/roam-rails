@@ -107,3 +107,14 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+def rand_integer(max = 100000)
+  rand(max)
+end
+
+def rand_time(options={})
+  defaults = { start_date: 1.week.ago, end_time: Time.now, timezone: "UTC" }
+  options = defaults.merge(options)
+
+  rand(options[:start_date].in_time_zone(options[:timezone])..options[:end_time].in_time_zone(options[:timezone]))
+end
