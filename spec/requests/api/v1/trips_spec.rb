@@ -24,35 +24,69 @@ describe "Trips API" do
 
         json = JSON.parse(response.body)
 
-        expect(response).to be_successful
+        expect(response).to have_http_status(:ok)
 
         expect(json).to eq [ trip.as_json ]
       end
     end
 
     describe "POST /api/v1/trips" do
-      it "creates a trip" do
-        expect(user.trips.count).to eq 1
+      context "with valid params" do
+        it "creates a trip" do
+          expect(user.trips.count).to eq 1
 
-        post api_v1_trips_url, params: trip_params, headers: headers
+          post api_v1_trips_url, params: trip_params, headers: headers
 
-        expect(response).to be_successful
+          expect(response).to have_http_status(:created)
 
-        expect(user.trips.count).to eq 2
+          expect(user.trips.count).to eq 2
+        end
+      end
+
+      context "with invalid params" do
+        it "does not create a trip" do
+          expect(user.trips.count).to eq 1
+
+          trip_params[:trip][:name] = nil
+
+          post api_v1_trips_url, params: trip_params, headers: headers
+
+          expect(response).to have_http_status(:unprocessable_entity)
+
+          expect(user.trips.count).to eq 1
+        end
       end
     end
 
     describe "PUT /api/v1/trips/:id" do
-      it "updates the specified trip" do
-        expect(user.trips.count).to eq 1
+      context "with valid params" do
+        it "updates the specified trip" do
+          expect(user.trips.count).to eq 1
 
-        put api_v1_trip_url(trip), params: trip_params, headers: headers
+          put api_v1_trip_url(trip), params: trip_params, headers: headers
 
-        expect(response).to be_successful
+          expect(response).to have_http_status(:ok)
 
-        expect(user.trips.count).to eq 1
+          expect(user.trips.count).to eq 1
 
-        expect(user.trips.first.name).to eq trip_params[:trip][:name]
+          expect(user.trips.first.name).to eq trip_params[:trip][:name]
+        end
+      end
+
+      context "with invalid params" do
+        it "does not update the specified trip" do
+          expect(user.trips.count).to eq 1
+
+          trip_params[:trip][:name] = nil
+
+          put api_v1_trip_url(trip), params: trip_params, headers: headers
+
+          expect(response).to have_http_status(:unprocessable_entity)
+
+          expect(user.trips.count).to eq 1
+
+          expect(user.trips.first.description).to_not eq trip_params[:trip][:description]
+        end
       end
     end
 
@@ -62,7 +96,7 @@ describe "Trips API" do
 
         delete api_v1_trip_url(trip), headers: headers
 
-        expect(response).to be_successful
+        expect(response).to have_http_status(:ok)
 
         expect(user.trips.count).to eq 0
       end

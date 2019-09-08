@@ -1,6 +1,8 @@
 class Trip < ApplicationRecord
   include ApiRespondable
 
+  validates :name, presence: true
+
   has_many :user_trips
   has_many :users, through: :user_trips
 
@@ -10,9 +12,9 @@ class Trip < ApplicationRecord
   has_many :points_of_interest
 
   def self.create_for_user(params, user_id)
-    Trip.transaction do
-      trip = Trip.create!(params)
+    trip = Trip.new(params)
 
+    if trip.save
       trip.add_user(user_id, :owner)
     end
   end
