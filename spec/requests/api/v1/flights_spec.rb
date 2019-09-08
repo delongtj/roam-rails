@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Trips API" do
+describe "Flights API" do
   let!(:user) { Fabricate(:user, password: "Testing123", password_confirmation: "Testing123") }
   let!(:auth_token) { UserService.sign_in(user.email, user.password)[:auth_token] }
   let!(:trip) { Fabricate(:trip) }
