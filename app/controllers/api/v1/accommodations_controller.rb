@@ -1,55 +1,46 @@
 module Api
   module V1
     class AccommodationsController < ApiController
-      before_action :set_accommodation, only: [:show, :update, :destroy]
+      expose(:accommodation_params) {
+        params.require(:accommodation).permit(:name, :accommodation_type, :address, :check_in_at, :check_out_at, 
+          :amount_in_cents, :amount_currency, :notes)
+      }
+      expose(:trips) { current_user.trips }
+      expose(:trip, scope: -> { trips })
+      expose(:accommodations) { trip.accommodations }
+      expose(:accommodation, scope: -> { accommodations })
 
-      # GET /accommodations
       def index
-        @accommodations = Accommodation.all
-
-        render json: @accommodations
+        render json: accommodations
       end
 
-      # GET /accommodations/1
       def show
-        render json: @accommodation
+        render json: accommodation
       end
 
-      # POST /accommodations
       def create
-        @accommodation = Accommodation.new(accommodation_params)
-
-        if @accommodation.save
-          render json: @accommodation, status: :created, location: @accommodation
+        if accommodation.save
+          render json: trip, status: :created
         else
-          render json: @accommodation.errors, status: :unprocessable_entity
+          render json: trip.errors, status: :unprocessable_entity
         end
       end
 
-      # PATCH/PUT /accommodations/1
       def update
-        if @accommodation.update(accommodation_params)
-          render json: @accommodation
+        if accommodation.update(accommodation_params)
+          render json: accommodation
         else
-          render json: @accommodation.errors, status: :unprocessable_entity
+          render json: accommodation.errors, status: :unprocessable_entity
         end
       end
 
-      # DELETE /accommodations/1
       def destroy
-        @accommodation.destroy
+        if accommodation.destroy
+          render json: accommodation
+        else
+          render json: accommodation.errors, status: :unprocessable_entity
+        end
       end
-
-      private
-        # Use callbacks to share common setup or constraints between actions.
-        def set_accommodation
-          @accommodation = Accommodation.find(params[:id])
-        end
-
-        # Only allow a trusted parameter "white list" through.
-        def accommodation_params
-          params.require(:accommodation).permit(:name, :accommodation_type, :address, :check_in_at, :check_out_at, :amount_in_cents, :amount_currency, :notes, :trip_id, :deleted_at)
-        end
     end
   end
 end
