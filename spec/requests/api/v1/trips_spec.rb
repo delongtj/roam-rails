@@ -7,11 +7,7 @@ describe "Trips API" do
 
   let(:trip_params) {
     {
-      trip: {
-        name: Faker::Lorem.sentence,
-        description: Faker::Lorem.paragraph,
-        budget_in_cents: 100000
-      }
+      trip: Fabricate.build(:trip).attributes.symbolize_keys
     }
   }
 
