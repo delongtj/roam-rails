@@ -1,24 +1,18 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Overview
 
-Things you may want to cover:
+Back-end API for Roam trip planning app. Handles authentication and RESTful API via JSON Web Tokens.
 
-* Ruby version
+## Requirements
 
-* System dependencies
+* Ruby 2.6.3
+* PostgreSQL 9.6
+* Rails 5.2.3
 
-* Configuration
+## Setup
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Clone to local machine
+* `bundle install`
+* `rails db:setup`
+* `rails s` to start server on port 3000
