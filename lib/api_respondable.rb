@@ -5,8 +5,8 @@ module ApiRespondable
     acts_as_paranoid
   end
 
-  def is_column_datetime?(column_name)
-    self.class.columns.find { |c| c.name == column_name }.try(:type) == :datetime
+  def is_date_column?(column_name)
+    [ :datetime, :date ].include?(self.class.columns.find { |c| c.name == column_name }.try(:type))
   end
 
   # Override for all objects returned by the API
@@ -14,7 +14,7 @@ module ApiRespondable
     response = {}
 
     attributes.except('deleted_at').each do |k, v|
-      if is_column_datetime?(k)
+      if is_date_column?(k)
         response[k] = v.to_s
       else
         response[k] = v

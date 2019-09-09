@@ -1,6 +1,6 @@
-class CreatePointsOfInterest < ActiveRecord::Migration[5.2]
+class CreateSights < ActiveRecord::Migration[5.2]
   def change
-    create_table :points_of_interest do |t|
+    create_table :sights do |t|
       t.string :name, null: false
       t.date :visit_date, null: false
       t.string :address

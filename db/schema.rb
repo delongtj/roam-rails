@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_024244) do
     t.index ["trip_id"], name: "index_flights_on_trip_id"
   end
 
-  create_table "points_of_interest", force: :cascade do |t|
+  create_table "sights", force: :cascade do |t|
     t.string "name", null: false
     t.date "visit_date", null: false
     t.string "address"
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_024244) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
-    t.index ["trip_id"], name: "index_points_of_interest_on_trip_id"
+    t.index ["trip_id"], name: "index_sights_on_trip_id"
   end
 
   create_table "trips", force: :cascade do |t|
@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_024244) do
   add_foreign_key "accommodations", "trips"
   add_foreign_key "car_rentals", "trips"
   add_foreign_key "flights", "trips"
-  add_foreign_key "points_of_interest", "trips"
+  add_foreign_key "sights", "trips"
   add_foreign_key "user_trips", "trips"
   add_foreign_key "user_trips", "users"
 end

@@ -9,7 +9,7 @@ class Trip < ApplicationRecord
   has_many :flights
   has_many :car_rentals
   has_many :accommodations
-  has_many :points_of_interest
+  has_many :sights
 
   def self.create_for_user(params, user_id)
     trip = Trip.new(params)

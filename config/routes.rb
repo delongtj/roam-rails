@@ -10,7 +10,7 @@ Rails.application.routes.draw do
         resources :accommodations
         resources :car_rentals
         resources :flights
-        resources :points_of_interest
+        resources :sights
       end
     end
   end
